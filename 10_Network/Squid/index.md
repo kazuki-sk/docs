@@ -208,6 +208,8 @@ gsettings set org.gnome.system.proxy mode 'manual'
 
 ```
 
+![GNOME Proxy Settings](./images/gnome_proxy_settings.png)
+
 **3. APT設定**
 
 File: `/etc/apt/apt.conf.d/90proxy`
@@ -235,7 +237,17 @@ NO_PROXY="localhost,127.0.0.1,::1,10.0.0.0/16"
 ## 6. Verification
 
 * **サービス状態**: `systemctl status squid`
+  * Active (running) となっていることを確認する。
+    ![Service Status](./images/service_status_active.png)
+
 * **アクセスログ**: `sudo tail -f /var/log/squid/access.log`
+  * 接続先ホストやメソッド（CONNECT/GET）が記録されていることを確認する。
+    ![Access Log](./files/access_log_sample.jpg)
+
+* **クライアント疎通確認**:
+  * ブラウザでアクセスした際、認証ダイアログが表示されるか確認する。Basic Authが効いてるかの確認
+    ![Auth Dialog](./images/browser_auth_dialog.png)
+
 * **動作ログ**: `sudo tail -f /var/log/squid/cache.log`
 * **クライアント疎通確認 (curl)**:
 
@@ -246,6 +258,16 @@ curl -x http://{username}:{password}@10.0.20.2:3128 -I [https://www.google.com](
 ```
 
 ## 7. Operations & Troubleshooting
+
+* **設定変更時の構文チェック**
+設定ファイルを変更した際は、再起動前に必ず構文チェックを行うこと。
+以下は設定ミス（IPアドレスの記述ミス）がある場合のエラー出力例。`FATAL` や `Bungled` と表示され、該当の行番号（line 4）が指摘される。
+
+```bash
+squid -k parse
+```
+
+![Error Syntax Check](./images/error_syntax_check.png)
 
 * **Firefoxの証明書エラー**:
 * FirefoxはOSの証明書ストアを参照しない場合がある。証明書（.crt）をブラウザ設定から手動インポートするか、`about:config` で `security.enterprise_roots.enabled` を `true` に設定する。
@@ -258,5 +280,3 @@ curl -x http://{username}:{password}@10.0.20.2:3128 -I [https://www.google.com](
 * [Ubuntu 24.04 で Squid プロキシサーバーを設定する](https://www.server-world.info/query?os=Ubuntu_24.04&p=squid&f=2)
 * [Squid Config Examples](https://wiki.squid-cache.org/ConfigExamples/)
 * [SquidでSSL Bump(HTTPSデコード)設定](https://qiita.com/zukizukizukizuki/items/e71cddc73f626a7393d9)
-
-```
