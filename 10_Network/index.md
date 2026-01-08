@@ -17,3 +17,8 @@
   * **概要**: LAN内クライアントのHTTP/HTTPS通信制御・監視用プロキシ。
   * **機能**: Tunneling, Basic Authentication, SSL Bumping (HTTPS解析)
   * **Status**: Stable
+
+* **[BIND9 DNS Server](./Bind/index.md)**
+  * **概要**: LAN内名前解決の一元化およびカスタムドメインの権威DNS。
+  * **機能**: Authoritative (Master), Forwarding, ACL Design
+  * **Status**: Stable
