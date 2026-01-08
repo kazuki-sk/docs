@@ -1,0 +1,4 @@
+zone "lab.sogy.dev" {
+    type master;
+    file "/etc/bind/zones/db.lab.sogy.dev";
+};

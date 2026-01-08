@@ -1,0 +1,29 @@
+;
+; BIND data file for lab.sogy.dev
+;
+$TTL    604800
+@       IN      SOA     ns1.lab.sogy.dev. root.lab.sogy.dev. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+
+;
+; Name Servers
+;
+@       IN      NS      ns1.lab.sogy.dev.
+
+;
+; A Records
+;
+@       IN      A       10.0.20.2       ; lab.sogy.dev
+ns1     IN      A       10.0.20.2       ; NameServer IP
+router  IN      A       10.0.20.1
+server  IN      A       10.0.20.2
+
+;
+; Test Round Robin
+;
+app     IN      A       10.0.20.10
+app     IN      A       10.0.20.11
