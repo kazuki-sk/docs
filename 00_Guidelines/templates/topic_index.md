@@ -1,3 +1,9 @@
+---
+tags: [network, unbound, dns, ubuntu]
+date: 2026-01-08
+status: stable
+---
+
 # [Title] システム名/作業名
 
 ## 1. Context (Why)
