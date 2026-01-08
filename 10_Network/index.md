@@ -10,3 +10,7 @@
 * **Cloud Network**: Azure VNet, AWS VPC
 
 ## Contents
+* **[Squid Proxy Server](./Squid/index.md)**
+    * **概要**: LAN内クライアントのHTTP/HTTPS通信制御・監視用プロキシ。
+    * **機能**: Tunneling, Basic Authentication, SSL Bumping (HTTPS解析)
+    * **Status**: Stable
